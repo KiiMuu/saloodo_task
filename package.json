@@ -1,0 +1,26 @@
+{
+	"name": "salood_task",
+	"version": "0.0.0",
+	"description": "A JavaScript task required by Saloodo.",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "nodemon app"
+	},
+	"dependencies": {
+		"cookie-parser": "^1.4.6",
+		"ejs": "^3.1.8",
+		"express": "^4.16.4",
+		"mongoose": "^6.8.1"
+	},
+	"devDependencies": {
+		"dotenv": "^16.0.3",
+		"gulp": "^4.0.2",
+		"gulp-autoprefixer": "^8.0.0",
+		"gulp-concat": "^2.6.1",
+		"gulp-dart-sass": "^1.0.2",
+		"gulp-livereload": "^4.0.2",
+		"gulp-nodemon": "^2.5.0",
+		"morgan": "^1.10.0"
+	}
+}
