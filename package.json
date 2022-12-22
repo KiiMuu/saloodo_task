@@ -8,9 +8,10 @@
 		"dev": "nodemon app"
 	},
 	"dependencies": {
-		"cookie-parser": "^1.4.6",
+		"connect-flash": "^0.1.1",
 		"ejs": "^3.1.8",
 		"express": "^4.16.4",
+		"express-session": "^1.17.3",
 		"mongoose": "^6.8.1"
 	},
 	"devDependencies": {
