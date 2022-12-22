@@ -1,3 +1,70 @@
 <%- include('../../partials/head') %>
-<div>Register Page</div>
+<div class="register">
+	<h1 class="register__header">
+		<span class="register__header--main">Register Now.</span>
+		<span class="register__header--sub">is where parcels fly.</span>
+	</h1>
+	<% if (errorMessage) { %>
+	<div class="register_error">
+		<span><%= errorMessage %></span>
+	</div>
+	<% } %>
+	<form action="register" method="POST">
+		<div class="register__input">
+			<label for="firstName">
+				First Name
+				<input
+					type="text"
+					name="firstName"
+					id="firstName"
+					placeholder="Type your first name"
+					value="<%= oldInputs.firstName %>"
+				/>
+			</label>
+		</div>
+		<div class="register__input">
+			<label for="lastName">
+				Last Name
+				<input
+					type="text"
+					name="lastName"
+					id="lastName"
+					placeholder="Type your last name"
+					value="<%= oldInputs.lastName %>"
+				/>
+			</label>
+		</div>
+		<div class="register__input">
+			<label for="email">
+				Email
+				<input
+					type="email"
+					name="email"
+					id="email"
+					placeholder="Type your email"
+					value="<%= oldInputs.email %>"
+				/>
+			</label>
+		</div>
+		<div class="register__input">
+			<label for="password">
+				Password
+				<input
+					type="password"
+					name="password"
+					id="password"
+					placeholder="Type your password"
+					value="<%= oldInputs.password %>"
+				/>
+			</label>
+		</div>
+		<div class="register__buttons">
+			<input type="hidden" value="<%= csrfToken %>" name="_csrf" />
+			<button class="register__buttons-main" type="submit">
+				Register
+			</button>
+			<a class="register__buttons-sub" href="./login">Login</a>
+		</div>
+	</form>
+</div>
 <%- include('../../partials/footer') %>

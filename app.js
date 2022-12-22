@@ -4,15 +4,18 @@ import logger from 'morgan';
 import session from 'express-session';
 import dotenv from 'dotenv';
 import flash from 'connect-flash';
+import csurf from 'csurf';
 import connectToMongoDB from './config/db.js';
 
 // app routes and controllers
+import indexRoutes from './routes/index.js';
 import authRoutes from './routes/auth.js';
 import senderRoutes from './routes/sender.js';
 import { get404, get500 } from './controllers/error.js';
 
 // app init
 const app = express();
+const csrfProtection = csurf();
 
 // database connection
 connectToMongoDB;
@@ -41,8 +44,15 @@ app.use(
 	})
 );
 app.use(flash());
+app.use(csrfProtection);
+app.use((req, res, next) => {
+	res.locals.csrfToken = req.csrfToken();
+
+	next();
+});
 
 // use app routes
+app.use('/', indexRoutes);
 app.use('/auth', authRoutes);
 app.use('/sender', senderRoutes);
 

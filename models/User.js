@@ -13,11 +13,6 @@ const UserSchema = new Schema(
 			type: String,
 			required: true,
 		},
-		username: {
-			type: String,
-			required: true,
-			unique: true,
-		},
 		email: {
 			type: String,
 			required: true,
@@ -30,6 +25,7 @@ const UserSchema = new Schema(
 		resetToken: String,
 		resetTokenExpiration: Date,
 		role: {
+			type: String,
 			enum: ['sender', 'biker'],
 			default: 'sender',
 		},
