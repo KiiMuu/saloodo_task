@@ -24,25 +24,13 @@ const getLoginPage = (req, res, next) => {
 const login = async (req, res, next) => {
 	try {
 		const { email, password } = req.body;
-		const errors = req.errors;
-
-		if (errors) {
-			return res.status(UNPROCESSABLE_ENTITY).render('pages/auth/login', {
-				pageTitle: 'Login | Errors!',
-				errorMessage: errors[0],
-				oldInputs: {
-					email,
-					password,
-				},
-			});
-		}
 
 		const user = await User.findOne({ email }).exec();
 
 		if (!user) {
 			return res.status(UNPROCESSABLE_ENTITY).render('pages/auth/login', {
 				pageTitle: 'Login | Errors!',
-				errorMessage: 'Invalid email or password',
+				errorMessage: 'The user with this email does not exist.',
 				oldInputs: {
 					email,
 					password,
@@ -120,14 +108,20 @@ const register = async (req, res, next) => {
 
 		const hashedPassword = await hashPassword(password);
 
-		await new User({
+		let newUser = await new User({
 			firstName,
 			lastName,
 			email,
 			password: hashedPassword,
 		}).save();
 
-		return res.redirect('/');
+		req.session.isLoggedIn = true;
+		req.session.user = newUser;
+		return req.session.save(err => {
+			if (err) console.log(err);
+
+			res.redirect('/');
+		});
 	} catch (error) {
 		return res.status(SERVER_ERROR).send({
 			errorMessage: error.message,
@@ -137,7 +131,7 @@ const register = async (req, res, next) => {
 
 const logout = (req, res, next) => {
 	req.session.destroy(err => {
-		console.log(err);
+		if (err) console.log(err);
 
 		res.redirect('/login');
 	});

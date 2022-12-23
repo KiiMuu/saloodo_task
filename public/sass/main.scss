@@ -3,9 +3,12 @@
 
 @import './base/base';
 
+@import './components/nav';
+@import './components/footer';
 @import './components/buttons';
 
 @import './layout/footer';
 @import './layout/header';
 
 @import './pages/home';
+@import './pages/register';

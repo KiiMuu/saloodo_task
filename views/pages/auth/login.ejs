@@ -1,3 +1,55 @@
 <%- include('../../partials/head') %>
-<div>Login Page</div>
+<div class="register">
+	<div class="register__wrap">
+		<div class="register__wrap__header">
+			<h1 class="register__wrap__header--main">Login Now.</h1>
+			<span class="register__wrap__header--sub"
+				>Control the parcels.</span
+			>
+		</div>
+		<% if (errorMessage) { %>
+		<div class="register__wrap__error">
+			<span><%= errorMessage %></span>
+		</div>
+		<% } %>
+		<form action="login" method="POST" class="register__wrap__form">
+			<div class="register__wrap__form__input">
+				<label for="email">
+					<span>Email</span>
+					<input
+						type="email"
+						name="email"
+						id="email"
+						placeholder="Type your email"
+						value="<%= oldInputs.email %>"
+					/>
+				</label>
+			</div>
+			<div class="register__wrap__form__input">
+				<label for="password">
+					<span>Password</span>
+					<input
+						type="password"
+						name="password"
+						id="password"
+						placeholder="Type your password"
+						value="<%= oldInputs.password %>"
+					/>
+				</label>
+			</div>
+			<div class="register__wrap__form__buttons">
+				<input type="hidden" value="<%= csrfToken %>" name="_csrf" />
+				<button
+					class="register__wrap__form__buttons--main"
+					type="submit"
+				>
+					Login
+				</button>
+				<a class="register__wrap__form__buttons--sub" href="./register"
+					>Register</a
+				>
+			</div>
+		</form>
+	</div>
+</div>
 <%- include('../../partials/footer') %>
