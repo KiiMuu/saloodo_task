@@ -1,6 +1,6 @@
 const isAuth = (req, res, next) => {
 	if (!req.session.isLoggedIn) {
-		return res.redirect('pages/login');
+		return res.redirect('/auth/login');
 	}
 
 	next();

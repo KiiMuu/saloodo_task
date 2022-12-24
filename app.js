@@ -11,7 +11,9 @@ import connectToMongoDB from './config/db.js';
 import indexRoutes from './routes/index.js';
 import authRoutes from './routes/auth.js';
 import senderRoutes from './routes/sender.js';
+import bikerRoutes from './routes/biker.js';
 import { get404, get500 } from './controllers/error.js';
+import User from './models/User.js';
 
 // app init
 const app = express();
@@ -51,17 +53,37 @@ app.use((req, res, next) => {
 	next();
 });
 
+// use some local variables -> via entire app.
+app.use((req, res, next) => {
+	res.locals.isAuth = req.session.isLoggedIn;
+	res.locals.user = req.session.user;
+
+	next();
+});
+app.use((req, res, next) => {
+	if (!req.session.user) {
+		return next();
+	}
+
+	User.findById(req.session.user._id)
+		.then(user => {
+			if (!user) {
+				return next();
+			}
+			req.user = user;
+
+			next();
+		})
+		.catch(err => {
+			console.log(err);
+		});
+});
+
 // use app routes
 app.use('/', indexRoutes);
 app.use('/auth', authRoutes);
 app.use('/sender', senderRoutes);
-
-// use some local variables -> via entire app.
-app.use((req, res, next) => {
-	res.locals.isAuth = req.session.isAuth;
-
-	next();
-});
+app.use('/biker', bikerRoutes);
 
 // errors!
 app.use(get404);

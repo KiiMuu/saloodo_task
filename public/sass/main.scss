@@ -5,10 +5,13 @@
 
 @import './components/nav';
 @import './components/footer';
-@import './components/buttons';
 
 @import './layout/footer';
 @import './layout/header';
 
 @import './pages/home';
 @import './pages/register';
+@import './pages/sender_dashboard';
+@import './pages/create_parcel';
+@import './pages/todo';
+@import './pages/parcel';

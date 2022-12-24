@@ -1,0 +1,30 @@
+<%- include('../../partials/head.ejs') %> <%- include('../../partials/nav.ejs')
+%>
+<div class="biker__todo">
+	<div class="container">
+		<h1 class="biker__todo__heading">All Parcels.</h1>
+		<% if (parcels.length) { %>
+		<div class="biker__todo__length">
+			You have <%- parcels.length %> parcels in your todo.
+		</div>
+		<% } %> <% if (parcels && parcels.length) { %>
+		<div class="biker__todo__parcels">
+			<% for (let parcel of parcels) { %>
+			<a href="todo/<%- parcel._id %>" class="biker__todo__parcels__item">
+				<h3><%- parcel.title %></h3>
+				<span>status: <span><%- parcel.status %></span></span>
+				<% if (parcel.deliveryTime) { %>
+				<div class="biker__todo__parcels__item__date">
+					<p>
+						Delivery: <%- new
+						Date(parcel.deliveryTime).toLocaleString() %>
+					</p>
+				</div>
+				<% } %>
+			</a>
+			<% } %>
+		</div>
+		<% } %>
+	</div>
+</div>
+<%- include('../../partials/footer') %>

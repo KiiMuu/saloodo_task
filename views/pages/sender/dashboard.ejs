@@ -1,0 +1,33 @@
+<%- include('../../partials/head.ejs') %> <%- include('../../partials/nav.ejs')
+%>
+<div class="sender__dashboard">
+	<div class="container">
+		<h1 class="sender__dashboard__heading">Your Parcels.</h1>
+		<a class="sender__dashboard__create" href="./create-parcel"
+			>Create New</a
+		>
+		<% if (parcels.length) { %>
+		<div class="sender__dashboard__length">
+			You have <%- parcels.length %> parcels in your dashboard.
+		</div>
+		<% } %> <% if (parcels && parcels.length) { %>
+		<div class="sender__dashboard__parcels">
+			<% for (let parcel of parcels) { %>
+			<div class="sender__dashboard__parcels__item">
+				<h3><%- parcel.title %></h3>
+				<span>status: <span><%- parcel.status %></span></span>
+				<% if (parcel.deliveryTime) { %>
+				<div class="sender__dashboard__parcels__item__date">
+					<p>
+						Delivery: <%- new
+						Date(parcel.deliveryTime).toLocaleString() %>
+					</p>
+				</div>
+				<% } %>
+			</div>
+			<% } %>
+		</div>
+		<% } %>
+	</div>
+</div>
+<%- include('../../partials/footer') %>

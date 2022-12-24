@@ -10,10 +10,18 @@ const ParcelSchema = new Schema(
 			required: true,
 		},
 		status: {
-			default: 'in progess',
-			enum: ['in progress', 'aborted', 'delivered'],
+			type: String,
+			enum: ['processing', 'aborted', 'delivered'],
+			default: 'processing',
+		},
+		deliveryTime: {
+			type: Date,
 		},
 		createdBy: {
+			ref: 'User',
+			type: ObjectId,
+		},
+		updatedBy: {
 			ref: 'User',
 			type: ObjectId,
 		},

@@ -133,7 +133,7 @@ const logout = (req, res, next) => {
 	req.session.destroy(err => {
 		if (err) console.log(err);
 
-		res.redirect('/login');
+		res.redirect('/auth/login');
 	});
 };
 

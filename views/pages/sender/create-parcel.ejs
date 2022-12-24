@@ -1,0 +1,19 @@
+<%- include('../../partials/head.ejs') %> <%- include('../../partials/nav.ejs')
+%>
+<div class="create__parcel">
+	<form action="/sender/create-parcel" method="post" class="container">
+		<label for="title">
+			<span>New Parcel</span>
+			<input
+				type="text"
+				name="title"
+				id="title"
+				placeholder="Insert a parcel title"
+				required
+			/>
+		</label>
+		<input type="hidden" value="<%= csrfToken %>" name="_csrf" />
+		<button type="submit">Add</button>
+	</form>
+</div>
+<%- include('../../partials/footer') %>

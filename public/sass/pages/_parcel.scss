@@ -1,0 +1,35 @@
+.parcel {
+	margin: 10rem 0;
+	&__heading {
+		display: block;
+		margin-top: 2rem;
+	}
+	form {
+		margin-top: 2rem;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1rem;
+		label {
+			span {
+				display: block;
+			}
+		}
+		button {
+			border: none;
+			outline: none;
+			font-size: 1.8rem;
+			background-color: $color-primary;
+			color: $color-white;
+			padding: 1.5rem;
+			margin-top: 2rem;
+			border-radius: 0.3rem;
+			text-decoration: none;
+			cursor: pointer;
+		}
+	}
+}
+
+.disabled {
+	cursor: not-alloweds;
+	pointer-events: none;
+}

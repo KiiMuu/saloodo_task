@@ -22,8 +22,6 @@ const UserSchema = new Schema(
 			type: String,
 			required: true,
 		},
-		resetToken: String,
-		resetTokenExpiration: Date,
 		role: {
 			type: String,
 			enum: ['sender', 'biker'],

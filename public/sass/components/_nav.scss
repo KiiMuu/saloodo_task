@@ -1,6 +1,45 @@
 .navigation {
 	position: fixed;
+	top: 0;
 	width: 100%;
-	color: $color-primary;
 	padding: 2rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	&__logo {
+		background-color: $color-primary;
+		color: $color-white;
+		padding: 1rem 1.5rem;
+		border-radius: 0.3rem;
+		text-decoration: none;
+	}
+	&__links {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 2rem;
+		list-style: none;
+		&__item {
+			background-color: $color-grey-light-2;
+			padding: 1rem 1.5rem;
+			border-radius: 0.3rem;
+			transition: all 0.1s ease-in-out;
+			&:hover {
+				background-color: $color-primary;
+				color: $color-white;
+			}
+			a {
+				text-decoration: none;
+				color: inherit;
+			}
+			&--logout {
+				cursor: pointer;
+				background: none;
+				border: none;
+				&:hover {
+					color: $color-white;
+				}
+			}
+		}
+	}
 }

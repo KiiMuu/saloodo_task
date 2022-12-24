@@ -1,1 +1,32 @@
-<nav class="navigation">I'm nav bar</nav>
+<nav class="navigation">
+	<a href="/" class="navigation__logo">
+		<span>Parcelify</span>
+	</a>
+	<ul class="navigation__links">
+		<% if (isAuth && user && user.role == 'sender') { %>
+		<li class="navigation__links__item">
+			<a href="./sender/dashboard">Dashboard</a>
+		</li>
+		<% } else if (isAuth && user && user.role == 'biker') { %>
+		<li class="navigation__links__item">
+			<a href="./biker/todo">Todo's Tool</a>
+		</li>
+		<% } %> <% if (!isAuth) { %>
+		<li class="navigation__links__item">
+			<a href="./auth/login">Login</a>
+		</li>
+		<li class="navigation__links__item">
+			<a href="./auth/register">Register</a>
+		</li>
+		<% } else { %>
+		<li class="navigation__links__item">
+			<form action="/auth/logout" method="POST">
+				<input type="hidden" value="<%= csrfToken %>" name="_csrf" />
+				<button type="submit" class="navigation__links__item--logout">
+					Logout
+				</button>
+			</form>
+		</li>
+		<% } %>
+	</ul>
+</nav>

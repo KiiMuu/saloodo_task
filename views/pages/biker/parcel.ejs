@@ -1,0 +1,32 @@
+<%- include('../../partials/head.ejs') %> <%- include('../../partials/nav.ejs')
+%> <% if (parcel) { %>
+<div class="parcel">
+	<div class="container">
+		<h1 class="parcel__heading"><%- parcel.title %></h1>
+        <form action="/biker/todo/<%- parcel._id %>/edit" method="post">
+            <label for="status">
+                <span>Status</span>
+                <select name="status" id="status" required>
+                    <option value="aborted" <%- parcel.status === 'aborted' ? 'selected' : '' %>>Aborted</option>
+                    <option value="processing" <%- parcel.status === 'processing' ? 'selected' : '' %>>Processing</option>
+                    <option value="delivered" <%- parcel.status === 'delivered' ? 'selected' : '' %>>Delivered</option>
+                </select>
+            </label>
+            <label for="time">
+                <span>Time</span>
+                <input
+                    type="date"
+                    id="time"
+                    name="time"
+                    value="<%- parcel.deliveryTime && new Date(parcel.deliveryTime).toISOString().slice(0, 10) %>"
+                    required
+                />
+            </label>
+            <input type="hidden" value="<%= csrfToken %>" name="_csrf">
+            <button type="submit" class="<%- parcel && parcel.updatedBy && parcel.updatedBy._id.toString() !==
+            user._id.toString() ? 'disabled' : '' %>"><%- parcel && parcel.updatedBy && parcel.updatedBy._id.toString() !==
+            user._id.toString() ? 'You cannot update it' : 'Update' %></button>
+        </form>
+	</div>
+</div>
+<% } %> <%- include('../../partials/footer') %>
