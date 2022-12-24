@@ -35,4 +35,4 @@ compose file</li>
 
 #### Task Demo!
 
-![Task Demo](Demo/demo.gif)
+![Task Demo](demo/demo.gif)
